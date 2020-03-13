@@ -1,4 +1,22 @@
-{% for product in collections.frontpage.products limit:4 %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {% for product in collections.frontpage.products  %}
+      <div class="card">
+        <a href="{{ product.url | within: collection }}">
+          <img class="card-img-top" src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+        </a>
+      </div>
+    </div>
+    <div class="col">
+      <h2>Avaliable products</h2>
+      <a href="{{ product.url | within: collection }}">Show here</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% for product in collections.frontpage.products  %}
   <div>
     <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
     {{ product.price | money }}
